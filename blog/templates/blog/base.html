@@ -15,6 +15,11 @@
     </head>
     <body>
         <div class="page-header">
+            {# only show the plus new link for authenticated users #}
+            {% if user.is_authenticated %}
+                {# glyphicon-plus from bootstrap will show a plus sign #}
+                <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            {% endif %}
             <h1><a href="/">The posts:</a></h1>
         </div>
 
