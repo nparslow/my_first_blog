@@ -1,36 +1,16 @@
-<html>
-    <head>
-        <title>Nick's blog</title>
-    </head>
-    <body>
-        <h1>h1: A big heading</h1>
-        <h2>h2: A sub-heading</h2>
-        <h3>h3: A sub-sub-heading (and so on up to h6)</h3>
-        <p>Hi there!</p>
-        <p>It works!</p>
-        <em>emphasis</em>
-        <strong>strong text</strong>
-        <br> after a break
-        <a href="http://djangogirls.org">a link</a>
-        <ul>
-            <li>first item</li>
-            <li>second item</li>
-        </ul>
-        <div> a separate section </div>
-        <div>
-            <h1>The posts:</h1>
-            {{ posts }}
 
-            {% for post in posts %}
-                <div>
-                    {# {{ post }} #}
-                    <p>published: {{ post.published_date }}</p>
-                    <h1><a href="">{{ post.title }}</a></h1>
-                    {# |linebreaks will convert line-breaks into paragraphs #}
-                    <p>{{ post.text|linebreaks }}</p>
-                </div>
-            {% endfor %}
+{% extends 'blog/base.html' %}
 
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            {# {{ post }} #}
+            <div class="date">
+                <p>published: {{ post.published_date }}</p>
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            {# |linebreaks will convert line-breaks into paragraphs #}
+            <p>{{ post.text|linebreaks }}</p>
         </div>
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
