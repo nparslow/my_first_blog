@@ -17,5 +17,20 @@
             <li>second item</li>
         </ul>
         <div> a separate section </div>
+        <div>
+            <h1>The posts:</h1>
+            {{ posts }}
+
+            {% for post in posts %}
+                <div>
+                    {# {{ post }} #}
+                    <p>published: {{ post.published_date }}</p>
+                    <h1><a href="">{{ post.title }}</a></h1>
+                    {# |linebreaks will convert line-breaks into paragraphs #}
+                    <p>{{ post.text|linebreaks }}</p>
+                </div>
+            {% endfor %}
+
+        </div>
     </body>
 </html>
